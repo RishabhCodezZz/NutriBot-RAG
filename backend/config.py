@@ -30,11 +30,18 @@ JUDGE_MODEL = os.environ.get("GEMINI_JUDGE_MODEL", "gemini-2.5-pro")
 
 TOP_K = int(os.environ.get("RAG_TOP_K", "10"))
 RERANK_K = int(os.environ.get("RAG_RERANK_K", "6"))
-# Cross-encoder raw logit threshold below which a doc is treated as "not relevant enough"
-# to inject into the prompt. ms-marco-MiniLM-L-6-v2 scores unrelated pairs strongly negative
-# and on-topic pairs near/above 0, so this is a conservative cutoff, not a calibrated one -
-# tune it against the retrieval ablation in backend/eval before trusting it in production.
-RERANK_SCORE_THRESHOLD = float(os.environ.get("RAG_RERANK_SCORE_THRESHOLD", "-3.0"))
+# Cross-encoder raw logit threshold below which the top doc is treated as
+# "not relevant enough" to answer from. Calibrated against real queries on
+# this embedding+reranker combo, not assumed - ms-marco-MiniLM-L-6-v2's
+# scores run much more negative than a "near 0" intuition would suggest:
+#   genuinely on-topic queries observed:  -2.9 to -6.9
+#   off-topic / injection queries observed: -8.6 to -11.2
+# -9.0 sits below every observed relevant score (comfortable margin) and
+# above the clearly off-topic cluster, erring toward letting the prompt's
+# own scope-decline rule handle borderline cases rather than the retrieval
+# gate silently swallowing a real question. Re-validate if the embedding
+# or reranker model changes - the raw score range is model-specific.
+RERANK_SCORE_THRESHOLD = float(os.environ.get("RAG_RERANK_SCORE_THRESHOLD", "-9.0"))
 
 HISTORY_MAX_TURNS = int(os.environ.get("RAG_HISTORY_MAX_TURNS", "6"))
 SESSION_TTL_SECONDS = int(os.environ.get("RAG_SESSION_TTL_SECONDS", str(60 * 60 * 6)))

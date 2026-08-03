@@ -22,6 +22,7 @@ backend/chroma_db/
 # Eval run outputs
 backend/eval/results/
 backend/eval_full_run.log
+backend/server_run.log
 
 # OS / IDE junk
 .DS_Store

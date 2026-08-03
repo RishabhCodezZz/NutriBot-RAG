@@ -24,6 +24,26 @@ def test_rerank_empty_docs_returns_empty():
     assert rag.rerank("anything", [], k=6) == []
 
 
+def test_default_threshold_does_not_reject_genuinely_relevant_queries():
+    """Regression test: RERANK_SCORE_THRESHOLD was originally set to -3.0 on
+    an untested assumption that on-topic scores run near 0. In production
+    this rejected nearly every real query - genuinely relevant matches from
+    this embedding+reranker pair score -2.9 to -6.9, well below -3.0. Uses
+    the real retrieve/rerank pipeline (no Gemini call), not a mock, because
+    the whole point is to catch a bad default, not confirm mocked plumbing."""
+    for query in [
+        "I am 21, 75kg. Suggest a high protein lunch.",
+        "I need a healthy breakfast for energy, but I am allergic to nuts.",
+        "Suggest a safe, low-sugar evening snack for a diabetic.",
+    ]:
+        docs = rag.rerank(query, rag.retrieve(query))
+        assert docs[0].rerank_score >= config.RERANK_SCORE_THRESHOLD, (
+            f"query {query!r} scored {docs[0].rerank_score} which is below "
+            f"the configured threshold {config.RERANK_SCORE_THRESHOLD} - it "
+            f"would incorrectly hit the fallback path in production"
+        )
+
+
 def test_answer_query_uses_fallback_when_below_threshold(monkeypatch):
     monkeypatch.setattr(config, "RERANK_SCORE_THRESHOLD", 999.0)  # nothing can pass this
 
