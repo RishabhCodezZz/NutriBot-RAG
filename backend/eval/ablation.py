@@ -12,6 +12,7 @@ from rank_bm25 import BM25Okapi
 
 import config
 import rag
+from eval import ratelimit
 
 LEGACY_PROMPT_TEMPLATE = """
     SYSTEM INSTRUCTION:
@@ -91,23 +92,28 @@ def run_variant(variant: str, query: str, history_text: str = ""):
     """Returns (answer_text, context_docs, prompt_used)."""
     if variant == "no_retrieval":
         prompt = NO_RETRIEVAL_PROMPT_TEMPLATE.format(query=query)
+        ratelimit.throttle()
         return rag.generate(prompt), [], prompt
 
     if variant == "bm25":
         docs = _bm25_retrieve(query, config.RERANK_K)
+        ratelimit.throttle()
         return rag.generate(_legacy_prompt(query, docs, history_text)), docs, None
 
     if variant == "dense_no_rerank":
         docs = rag.retrieve(query, top_k=config.RERANK_K)
+        ratelimit.throttle()
         return rag.generate(_legacy_prompt(query, docs, history_text)), docs, None
 
     if variant == "dense_rerank_legacy_prompt":
         docs = rag.rerank(query, rag.retrieve(query))
+        ratelimit.throttle()
         return rag.generate(_legacy_prompt(query, docs, history_text)), docs, None
 
     if variant == "dense_rerank_hardened":
         docs = rag.rerank(query, rag.retrieve(query))
         prompt = rag.build_prompt(query, docs, history_text)
+        ratelimit.throttle()
         return rag.generate(prompt), docs, prompt
 
     raise ValueError(f"unknown ablation variant: {variant}")

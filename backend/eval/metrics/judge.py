@@ -13,6 +13,7 @@ import time
 import google.generativeai as genai
 
 import config
+from eval import ratelimit
 
 _judge_model = None
 
@@ -30,6 +31,7 @@ def _call_with_retry(prompt: str, max_retries: int = 2, backoff: float = 5.0) ->
     last_err = None
     for attempt in range(max_retries + 1):
         try:
+            ratelimit.throttle()
             return model.generate_content(prompt).text
         except Exception as e:
             last_err = e
