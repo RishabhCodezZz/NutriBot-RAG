@@ -14,9 +14,13 @@ __pycache__/
 # Environment / secrets
 .env
 .env.*
+!.env.example
 
 # Generated vector store
 backend/chroma_db/
+
+# Eval run outputs
+backend/eval/results/
 
 # OS / IDE junk
 .DS_Store

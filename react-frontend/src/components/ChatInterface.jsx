@@ -8,7 +8,7 @@ const ChatInterface = ({ isDarkMode, onToggleDarkMode, resetCounter }) => {
     const [isLoading, setIsLoading] = useState(false);
     const [isSpeaking, setIsSpeaking] = useState(false);
     
-    // NEW: State for the Language Dropdown
+    // State for the Language Dropdown
     const [preferredLang, setPreferredLang] = useState('auto'); 
 
     const messagesEndRef = useRef(null);
@@ -20,6 +20,22 @@ const ChatInterface = ({ isDarkMode, onToggleDarkMode, resetCounter }) => {
     useEffect(() => {
         scrollToBottom();
     }, [messages]);
+
+    // === HELPER: FORMAT BOLD TEXT ===
+    const formatMessageText = (text) => {
+        if (!text) return null;
+        // This splits the string at every **...** block
+        const parts = text.split(/(\*\*.*?\*\*)/g);
+        
+        return parts.map((part, index) => {
+            if (part.startsWith('**') && part.endsWith('**')) {
+                // Remove the ** and wrap in a bold tag
+                return <strong key={index} className="font-bold">{part.slice(2, -2)}</strong>;
+            }
+            // Return normal text
+            return <span key={index}>{part}</span>;
+        });
+    };
 
     // === IMPROVED TEXT TO SPEECH (WITH MULTI-LANGUAGE SUPPORT) ===
     const speakText = (text, langCode = 'en') => {
@@ -158,7 +174,7 @@ const ChatInterface = ({ isDarkMode, onToggleDarkMode, resetCounter }) => {
                 </div>
 
                 <div className="flex items-center space-x-3">
-                    {/* NEW: Language Selector Dropdown */}
+                    {/* Language Selector Dropdown */}
                     <select 
                         value={preferredLang} 
                         onChange={(e) => setPreferredLang(e.target.value)}
@@ -197,9 +213,27 @@ const ChatInterface = ({ isDarkMode, onToggleDarkMode, resetCounter }) => {
                                 ? 'bg-blue-600 text-white'
                                 : isDarkMode ? 'bg-[#242526] text-white border border-[#2A2B32]' : 'bg-white text-gray-900 border border-gray-200'
                             }`}>
-                            <p className="text-sm md:text-base leading-relaxed whitespace-pre-wrap">{message.content}</p>
+                            
+                            {/* Render Formatted Text (Handles Bolding) */}
+                            <div className="text-sm md:text-base leading-relaxed whitespace-pre-wrap">
+                                {formatMessageText(message.content)}
+                            </div>
 
-                            {/* === READ ALOUD BUTTON === */}
+                            {/* Display Sources retrieved from the Python Backend */}
+                            {message.role === 'assistant' && message.sources && message.sources.length > 0 && (
+                                <div className={`mt-4 pt-3 border-t text-xs md:text-sm ${
+                                    isDarkMode ? 'border-gray-600 text-gray-400' : 'border-gray-300 text-gray-500'
+                                }`}>
+                                    <p className="font-bold mb-1">Sources retrieved:</p>
+                                    <ul className="list-disc list-inside space-y-1">
+                                        {[...new Set(message.sources.map(s => s.title))].map((sourceTitle, idx) => (
+                                            <li key={idx}>{sourceTitle}</li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            )}
+
+                            {/* READ ALOUD BUTTON */}
                             {message.role === 'assistant' && (
                                 <div className="mt-4 pt-3 border-t border-gray-500/20 flex items-center justify-between">
                                     <button 

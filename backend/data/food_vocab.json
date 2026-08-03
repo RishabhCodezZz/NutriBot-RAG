@@ -1,0 +1,1208 @@
+[
+  {
+    "name": "Apple",
+    "aliases": [],
+    "category": "Fruit",
+    "calorie_basis": "serving",
+    "calories": 52.0,
+    "protein_g": 0.3,
+    "carbs_g": 14.0,
+    "fats_g": 0.2,
+    "allergen_tags": [],
+    "diet_tags": [
+      "vegan",
+      "vegetarian"
+    ]
+  },
+  {
+    "name": "Banana",
+    "aliases": [],
+    "category": "Fruit",
+    "calorie_basis": "serving",
+    "calories": 89.0,
+    "protein_g": 1.1,
+    "carbs_g": 23.0,
+    "fats_g": 0.3,
+    "allergen_tags": [],
+    "diet_tags": [
+      "vegan",
+      "vegetarian"
+    ]
+  },
+  {
+    "name": "Orange",
+    "aliases": [],
+    "category": "Fruit",
+    "calorie_basis": "serving",
+    "calories": 47.0,
+    "protein_g": 0.9,
+    "carbs_g": 12.0,
+    "fats_g": 0.1,
+    "allergen_tags": [],
+    "diet_tags": [
+      "vegan",
+      "vegetarian"
+    ]
+  },
+  {
+    "name": "Mango",
+    "aliases": [],
+    "category": "Fruit",
+    "calorie_basis": "serving",
+    "calories": 60.0,
+    "protein_g": 0.8,
+    "carbs_g": 15.0,
+    "fats_g": 0.4,
+    "allergen_tags": [],
+    "diet_tags": [
+      "vegan",
+      "vegetarian"
+    ]
+  },
+  {
+    "name": "Grapes",
+    "aliases": [],
+    "category": "Fruit",
+    "calorie_basis": "serving",
+    "calories": 69.0,
+    "protein_g": 0.7,
+    "carbs_g": 18.0,
+    "fats_g": 0.2,
+    "allergen_tags": [],
+    "diet_tags": [
+      "vegan",
+      "vegetarian"
+    ]
+  },
+  {
+    "name": "Papaya",
+    "aliases": [],
+    "category": "Fruit",
+    "calorie_basis": "serving",
+    "calories": 43.0,
+    "protein_g": 0.5,
+    "carbs_g": 11.0,
+    "fats_g": 0.3,
+    "allergen_tags": [],
+    "diet_tags": [
+      "vegan",
+      "vegetarian"
+    ]
+  },
+  {
+    "name": "Watermelon",
+    "aliases": [],
+    "category": "Fruit",
+    "calorie_basis": "serving",
+    "calories": 30.0,
+    "protein_g": 0.6,
+    "carbs_g": 8.0,
+    "fats_g": 0.2,
+    "allergen_tags": [],
+    "diet_tags": [
+      "vegan",
+      "vegetarian"
+    ]
+  },
+  {
+    "name": "Pomegranate",
+    "aliases": [],
+    "category": "Fruit",
+    "calorie_basis": "100 g",
+    "calories": 83.0,
+    "protein_g": 1.7,
+    "carbs_g": 19.0,
+    "fats_g": 1.2,
+    "allergen_tags": [],
+    "diet_tags": [
+      "vegan",
+      "vegetarian"
+    ]
+  },
+  {
+    "name": "Guava",
+    "aliases": [],
+    "category": "Fruit",
+    "calorie_basis": "100 g",
+    "calories": 68.0,
+    "protein_g": 2.6,
+    "carbs_g": 14.0,
+    "fats_g": 0.9,
+    "allergen_tags": [],
+    "diet_tags": [
+      "vegan",
+      "vegetarian"
+    ]
+  },
+  {
+    "name": "Custard Apple (Sitaphal)",
+    "aliases": [
+      "Sitaphal"
+    ],
+    "category": "Fruit",
+    "calorie_basis": "serving",
+    "calories": 94.0,
+    "protein_g": 2.1,
+    "carbs_g": 24.0,
+    "fats_g": 0.3,
+    "allergen_tags": [],
+    "diet_tags": [
+      "vegan",
+      "vegetarian"
+    ]
+  },
+  {
+    "name": "Pineapple",
+    "aliases": [],
+    "category": "Fruit",
+    "calorie_basis": "serving",
+    "calories": 50.0,
+    "protein_g": 0.5,
+    "carbs_g": 13.0,
+    "fats_g": 0.1,
+    "allergen_tags": [],
+    "diet_tags": [
+      "vegan",
+      "vegetarian"
+    ]
+  },
+  {
+    "name": "Strawberry",
+    "aliases": [],
+    "category": "Fruit",
+    "calorie_basis": "serving",
+    "calories": 33.0,
+    "protein_g": 0.7,
+    "carbs_g": 8.0,
+    "fats_g": 0.3,
+    "allergen_tags": [],
+    "diet_tags": [
+      "vegan",
+      "vegetarian"
+    ]
+  },
+  {
+    "name": "Kiwi",
+    "aliases": [],
+    "category": "Fruit",
+    "calorie_basis": "serving",
+    "calories": 61.0,
+    "protein_g": 1.1,
+    "carbs_g": 15.0,
+    "fats_g": 0.5,
+    "allergen_tags": [],
+    "diet_tags": [
+      "vegan",
+      "vegetarian"
+    ]
+  },
+  {
+    "name": "Spinach (Palak)",
+    "aliases": [],
+    "category": "Vegetable",
+    "calorie_basis": "serving",
+    "calories": 23.0,
+    "protein_g": 2.9,
+    "carbs_g": 3.6,
+    "fats_g": 0.4,
+    "allergen_tags": [],
+    "diet_tags": [
+      "vegan",
+      "vegetarian"
+    ]
+  },
+  {
+    "name": "Broccoli",
+    "aliases": [],
+    "category": "Vegetable",
+    "calorie_basis": "serving",
+    "calories": 34.0,
+    "protein_g": 2.8,
+    "carbs_g": 7.0,
+    "fats_g": 0.4,
+    "allergen_tags": [],
+    "diet_tags": [
+      "vegan",
+      "vegetarian"
+    ]
+  },
+  {
+    "name": "Cauliflower (Gobi)",
+    "aliases": [
+      "Gobi"
+    ],
+    "category": "Vegetable",
+    "calorie_basis": "serving",
+    "calories": 25.0,
+    "protein_g": 1.9,
+    "carbs_g": 5.0,
+    "fats_g": 0.3,
+    "allergen_tags": [],
+    "diet_tags": [
+      "vegan",
+      "vegetarian"
+    ]
+  },
+  {
+    "name": "Cabbage",
+    "aliases": [],
+    "category": "Vegetable",
+    "calorie_basis": "serving",
+    "calories": 25.0,
+    "protein_g": 1.3,
+    "carbs_g": 6.0,
+    "fats_g": 0.1,
+    "allergen_tags": [],
+    "diet_tags": [
+      "vegan",
+      "vegetarian"
+    ]
+  },
+  {
+    "name": "Carrot",
+    "aliases": [],
+    "category": "Vegetable",
+    "calorie_basis": "serving",
+    "calories": 41.0,
+    "protein_g": 0.9,
+    "carbs_g": 10.0,
+    "fats_g": 0.2,
+    "allergen_tags": [],
+    "diet_tags": [
+      "vegan",
+      "vegetarian"
+    ]
+  },
+  {
+    "name": "Potato",
+    "aliases": [],
+    "category": "Vegetable",
+    "calorie_basis": "100 g",
+    "calories": 77.0,
+    "protein_g": 2.0,
+    "carbs_g": 17.5,
+    "fats_g": 0.1,
+    "allergen_tags": [],
+    "diet_tags": [
+      "vegan",
+      "vegetarian"
+    ]
+  },
+  {
+    "name": "Sweet Potato",
+    "aliases": [],
+    "category": "Vegetable",
+    "calorie_basis": "serving",
+    "calories": 86.0,
+    "protein_g": 1.6,
+    "carbs_g": 20.0,
+    "fats_g": 0.1,
+    "allergen_tags": [],
+    "diet_tags": [
+      "vegan",
+      "vegetarian"
+    ]
+  },
+  {
+    "name": "Tomato",
+    "aliases": [],
+    "category": "Vegetable",
+    "calorie_basis": "serving",
+    "calories": 18.0,
+    "protein_g": 0.9,
+    "carbs_g": 3.9,
+    "fats_g": 0.2,
+    "allergen_tags": [],
+    "diet_tags": [
+      "vegan",
+      "vegetarian"
+    ]
+  },
+  {
+    "name": "Onion",
+    "aliases": [],
+    "category": "Vegetable",
+    "calorie_basis": "serving",
+    "calories": 40.0,
+    "protein_g": 1.1,
+    "carbs_g": 9.0,
+    "fats_g": 0.1,
+    "allergen_tags": [],
+    "diet_tags": [
+      "vegan",
+      "vegetarian"
+    ]
+  },
+  {
+    "name": "Cucumber",
+    "aliases": [],
+    "category": "Vegetable",
+    "calorie_basis": "serving",
+    "calories": 15.0,
+    "protein_g": 0.7,
+    "carbs_g": 3.6,
+    "fats_g": 0.1,
+    "allergen_tags": [],
+    "diet_tags": [
+      "vegan",
+      "vegetarian"
+    ]
+  },
+  {
+    "name": "Bottle Gourd (Lauki)",
+    "aliases": [
+      "Lauki"
+    ],
+    "category": "Vegetable",
+    "calorie_basis": "serving",
+    "calories": 15.0,
+    "protein_g": 0.2,
+    "carbs_g": 3.6,
+    "fats_g": 0.1,
+    "allergen_tags": [],
+    "diet_tags": [
+      "vegan",
+      "vegetarian"
+    ]
+  },
+  {
+    "name": "Bitter Gourd (Karela)",
+    "aliases": [
+      "Karela"
+    ],
+    "category": "Vegetable",
+    "calorie_basis": "serving",
+    "calories": 17.0,
+    "protein_g": 1.0,
+    "carbs_g": 3.7,
+    "fats_g": 0.1,
+    "allergen_tags": [],
+    "diet_tags": [
+      "vegan",
+      "vegetarian"
+    ]
+  },
+  {
+    "name": "Okra (Lady Finger)",
+    "aliases": [
+      "Lady Finger",
+      "Bhindi"
+    ],
+    "category": "Vegetable",
+    "calorie_basis": "serving",
+    "calories": 33.0,
+    "protein_g": 1.9,
+    "carbs_g": 7.5,
+    "fats_g": 0.2,
+    "allergen_tags": [],
+    "diet_tags": [
+      "vegan",
+      "vegetarian"
+    ]
+  },
+  {
+    "name": "Eggplant (Brinjal)",
+    "aliases": [
+      "Brinjal",
+      "Aubergine"
+    ],
+    "category": "Vegetable",
+    "calorie_basis": "serving",
+    "calories": 25.0,
+    "protein_g": 1.0,
+    "carbs_g": 6.0,
+    "fats_g": 0.2,
+    "allergen_tags": [],
+    "diet_tags": [
+      "vegan",
+      "vegetarian"
+    ]
+  },
+  {
+    "name": "Capsicum",
+    "aliases": [],
+    "category": "Vegetable",
+    "calorie_basis": "serving",
+    "calories": 20.0,
+    "protein_g": 0.9,
+    "carbs_g": 4.6,
+    "fats_g": 0.2,
+    "allergen_tags": [],
+    "diet_tags": [
+      "vegan",
+      "vegetarian"
+    ]
+  },
+  {
+    "name": "Green Peas (Matar)",
+    "aliases": [
+      "Matar",
+      "Peas"
+    ],
+    "category": "Vegetable",
+    "calorie_basis": "serving",
+    "calories": 81.0,
+    "protein_g": 5.4,
+    "carbs_g": 14.0,
+    "fats_g": 0.4,
+    "allergen_tags": [],
+    "diet_tags": [
+      "vegan",
+      "vegetarian"
+    ]
+  },
+  {
+    "name": "Green Beans",
+    "aliases": [],
+    "category": "Vegetable",
+    "calorie_basis": "serving",
+    "calories": 31.0,
+    "protein_g": 1.8,
+    "carbs_g": 7.0,
+    "fats_g": 0.2,
+    "allergen_tags": [],
+    "diet_tags": [
+      "vegan",
+      "vegetarian"
+    ]
+  },
+  {
+    "name": "Mushroom",
+    "aliases": [],
+    "category": "Vegetable",
+    "calorie_basis": "serving",
+    "calories": 22.0,
+    "protein_g": 3.1,
+    "carbs_g": 3.3,
+    "fats_g": 0.3,
+    "allergen_tags": [],
+    "diet_tags": [
+      "vegan",
+      "vegetarian"
+    ]
+  },
+  {
+    "name": "Beetroot",
+    "aliases": [],
+    "category": "Vegetable",
+    "calorie_basis": "serving",
+    "calories": 43.0,
+    "protein_g": 1.6,
+    "carbs_g": 10.0,
+    "fats_g": 0.2,
+    "allergen_tags": [],
+    "diet_tags": [
+      "vegan",
+      "vegetarian"
+    ]
+  },
+  {
+    "name": "Rice (White)",
+    "aliases": [],
+    "category": "Grain",
+    "calorie_basis": "serving",
+    "calories": 130.0,
+    "protein_g": 2.7,
+    "carbs_g": 28.0,
+    "fats_g": 0.3,
+    "allergen_tags": [],
+    "diet_tags": [
+      "vegan",
+      "vegetarian"
+    ]
+  },
+  {
+    "name": "Brown Rice",
+    "aliases": [],
+    "category": "Grain",
+    "calorie_basis": "serving",
+    "calories": 111.0,
+    "protein_g": 2.6,
+    "carbs_g": 23.0,
+    "fats_g": 0.9,
+    "allergen_tags": [],
+    "diet_tags": [
+      "vegan",
+      "vegetarian"
+    ]
+  },
+  {
+    "name": "Wheat Roti (Whole Wheat Flour)",
+    "aliases": [
+      "Roti",
+      "Chapati",
+      "Whole Wheat Flour"
+    ],
+    "category": "Grain",
+    "calorie_basis": "100 g",
+    "calories": 340.0,
+    "protein_g": 13.2,
+    "carbs_g": 71.2,
+    "fats_g": 2.5,
+    "allergen_tags": [
+      "gluten",
+      "wheat"
+    ],
+    "diet_tags": [
+      "vegan",
+      "vegetarian"
+    ]
+  },
+  {
+    "name": "Oats",
+    "aliases": [],
+    "category": "Grain",
+    "calorie_basis": "serving",
+    "calories": 389.0,
+    "protein_g": 16.9,
+    "carbs_g": 66.0,
+    "fats_g": 6.9,
+    "allergen_tags": [],
+    "diet_tags": [
+      "vegan",
+      "vegetarian"
+    ]
+  },
+  {
+    "name": "Quinoa",
+    "aliases": [],
+    "category": "Grain",
+    "calorie_basis": "serving",
+    "calories": 120.0,
+    "protein_g": 4.4,
+    "carbs_g": 21.0,
+    "fats_g": 1.9,
+    "allergen_tags": [],
+    "diet_tags": [
+      "vegan",
+      "vegetarian"
+    ]
+  },
+  {
+    "name": "Ragi (Finger Millet)",
+    "aliases": [
+      "Ragi",
+      "Finger Millet"
+    ],
+    "category": "Grain",
+    "calorie_basis": "serving",
+    "calories": 328.0,
+    "protein_g": 7.3,
+    "carbs_g": 72.0,
+    "fats_g": 1.3,
+    "allergen_tags": [],
+    "diet_tags": [
+      "vegan",
+      "vegetarian"
+    ]
+  },
+  {
+    "name": "Jowar (Sorghum)",
+    "aliases": [
+      "Jowar",
+      "Sorghum"
+    ],
+    "category": "Grain",
+    "calorie_basis": "serving",
+    "calories": 329.0,
+    "protein_g": 11.0,
+    "carbs_g": 72.0,
+    "fats_g": 3.0,
+    "allergen_tags": [],
+    "diet_tags": [
+      "vegan",
+      "vegetarian"
+    ]
+  },
+  {
+    "name": "Corn (Maize)",
+    "aliases": [
+      "Corn",
+      "Maize"
+    ],
+    "category": "Grain",
+    "calorie_basis": "serving",
+    "calories": 86.0,
+    "protein_g": 3.2,
+    "carbs_g": 19.0,
+    "fats_g": 1.2,
+    "allergen_tags": [],
+    "diet_tags": [
+      "vegan",
+      "vegetarian"
+    ]
+  },
+  {
+    "name": "Toor Dal",
+    "aliases": [],
+    "category": "Legume",
+    "calorie_basis": "serving",
+    "calories": 343.0,
+    "protein_g": 22.0,
+    "carbs_g": 63.0,
+    "fats_g": 1.5,
+    "allergen_tags": [],
+    "diet_tags": [
+      "vegan",
+      "vegetarian"
+    ]
+  },
+  {
+    "name": "Moong Dal",
+    "aliases": [],
+    "category": "Legume",
+    "calorie_basis": "serving",
+    "calories": 347.0,
+    "protein_g": 24.0,
+    "carbs_g": 63.0,
+    "fats_g": 1.2,
+    "allergen_tags": [],
+    "diet_tags": [
+      "vegan",
+      "vegetarian"
+    ]
+  },
+  {
+    "name": "Masoor Dal",
+    "aliases": [],
+    "category": "Legume",
+    "calorie_basis": "serving",
+    "calories": 343.0,
+    "protein_g": 25.0,
+    "carbs_g": 60.0,
+    "fats_g": 1.0,
+    "allergen_tags": [],
+    "diet_tags": [
+      "vegan",
+      "vegetarian"
+    ]
+  },
+  {
+    "name": "Chana Dal",
+    "aliases": [],
+    "category": "Legume",
+    "calorie_basis": "serving",
+    "calories": 360.0,
+    "protein_g": 21.0,
+    "carbs_g": 60.0,
+    "fats_g": 5.0,
+    "allergen_tags": [],
+    "diet_tags": [
+      "vegan",
+      "vegetarian"
+    ]
+  },
+  {
+    "name": "Chickpeas (Chole)",
+    "aliases": [
+      "Chole",
+      "Garbanzo Beans",
+      "Garbanzo"
+    ],
+    "category": "Legume",
+    "calorie_basis": "serving",
+    "calories": 164.0,
+    "protein_g": 8.9,
+    "carbs_g": 27.0,
+    "fats_g": 2.6,
+    "allergen_tags": [],
+    "diet_tags": [
+      "vegan",
+      "vegetarian"
+    ]
+  },
+  {
+    "name": "Kidney Beans (Rajma)",
+    "aliases": [
+      "Rajma"
+    ],
+    "category": "Legume",
+    "calorie_basis": "serving",
+    "calories": 127.0,
+    "protein_g": 8.7,
+    "carbs_g": 22.8,
+    "fats_g": 0.5,
+    "allergen_tags": [],
+    "diet_tags": [
+      "vegan",
+      "vegetarian"
+    ]
+  },
+  {
+    "name": "Black Gram (Urad)",
+    "aliases": [
+      "Urad",
+      "Urad Dal"
+    ],
+    "category": "Legume",
+    "calorie_basis": "serving",
+    "calories": 341.0,
+    "protein_g": 25.0,
+    "carbs_g": 59.0,
+    "fats_g": 1.6,
+    "allergen_tags": [],
+    "diet_tags": [
+      "vegan",
+      "vegetarian"
+    ]
+  },
+  {
+    "name": "Soya Chunks",
+    "aliases": [],
+    "category": "Protein",
+    "calorie_basis": "serving",
+    "calories": 345.0,
+    "protein_g": 52.0,
+    "carbs_g": 33.0,
+    "fats_g": 0.5,
+    "allergen_tags": [
+      "soy"
+    ],
+    "diet_tags": [
+      "vegan",
+      "vegetarian"
+    ]
+  },
+  {
+    "name": "Tofu",
+    "aliases": [],
+    "category": "Protein",
+    "calorie_basis": "serving",
+    "calories": 76.0,
+    "protein_g": 8.0,
+    "carbs_g": 1.9,
+    "fats_g": 4.8,
+    "allergen_tags": [
+      "soy"
+    ],
+    "diet_tags": [
+      "vegan",
+      "vegetarian"
+    ]
+  },
+  {
+    "name": "Paneer",
+    "aliases": [],
+    "category": "Dairy",
+    "calorie_basis": "serving",
+    "calories": 265.0,
+    "protein_g": 18.0,
+    "carbs_g": 1.2,
+    "fats_g": 21.0,
+    "allergen_tags": [
+      "dairy",
+      "milk"
+    ],
+    "diet_tags": [
+      "vegetarian"
+    ]
+  },
+  {
+    "name": "Milk (Cow, Whole)",
+    "aliases": [
+      "Whole Milk",
+      "Cow Milk",
+      "Milk"
+    ],
+    "category": "Dairy",
+    "calorie_basis": "100 g",
+    "calories": 61.0,
+    "protein_g": 3.2,
+    "carbs_g": 4.8,
+    "fats_g": 3.3,
+    "allergen_tags": [
+      "dairy",
+      "milk"
+    ],
+    "diet_tags": [
+      "vegetarian"
+    ]
+  },
+  {
+    "name": "Curd (Dahi)",
+    "aliases": [
+      "Dahi",
+      "Yogurt"
+    ],
+    "category": "Dairy",
+    "calorie_basis": "100 g",
+    "calories": 61.0,
+    "protein_g": 3.5,
+    "carbs_g": 4.7,
+    "fats_g": 3.3,
+    "allergen_tags": [
+      "dairy",
+      "milk"
+    ],
+    "diet_tags": [
+      "vegetarian"
+    ]
+  },
+  {
+    "name": "Greek Yogurt",
+    "aliases": [],
+    "category": "Dairy",
+    "calorie_basis": "serving",
+    "calories": 59.0,
+    "protein_g": 10.0,
+    "carbs_g": 3.6,
+    "fats_g": 0.4,
+    "allergen_tags": [
+      "dairy",
+      "milk"
+    ],
+    "diet_tags": [
+      "vegetarian"
+    ]
+  },
+  {
+    "name": "Cheese (Cheddar)",
+    "aliases": [
+      "Cheddar",
+      "Cheddar Cheese"
+    ],
+    "category": "Dairy",
+    "calorie_basis": "serving",
+    "calories": 402.0,
+    "protein_g": 25.0,
+    "carbs_g": 1.3,
+    "fats_g": 33.0,
+    "allergen_tags": [
+      "dairy",
+      "milk"
+    ],
+    "diet_tags": [
+      "vegetarian"
+    ]
+  },
+  {
+    "name": "Egg (Whole)",
+    "aliases": [],
+    "category": "Protein",
+    "calorie_basis": "serving",
+    "calories": 155.0,
+    "protein_g": 13.0,
+    "carbs_g": 1.1,
+    "fats_g": 11.0,
+    "allergen_tags": [
+      "egg"
+    ],
+    "diet_tags": [
+      "non-vegetarian"
+    ]
+  },
+  {
+    "name": "Egg White",
+    "aliases": [],
+    "category": "Protein",
+    "calorie_basis": "serving",
+    "calories": 52.0,
+    "protein_g": 11.0,
+    "carbs_g": 0.7,
+    "fats_g": 0.2,
+    "allergen_tags": [
+      "egg"
+    ],
+    "diet_tags": [
+      "non-vegetarian"
+    ]
+  },
+  {
+    "name": "Chicken Breast",
+    "aliases": [],
+    "category": "Protein",
+    "calorie_basis": "serving",
+    "calories": 165.0,
+    "protein_g": 31.0,
+    "carbs_g": 0.0,
+    "fats_g": 3.6,
+    "allergen_tags": [],
+    "diet_tags": [
+      "non-vegetarian"
+    ]
+  },
+  {
+    "name": "Chicken Thigh",
+    "aliases": [],
+    "category": "Protein",
+    "calorie_basis": "serving",
+    "calories": 209.0,
+    "protein_g": 26.0,
+    "carbs_g": 0.0,
+    "fats_g": 10.9,
+    "allergen_tags": [],
+    "diet_tags": [
+      "non-vegetarian"
+    ]
+  },
+  {
+    "name": "Mutton (Goat, Lean, Cooked)",
+    "aliases": [
+      "Mutton",
+      "Goat Meat"
+    ],
+    "category": "Protein",
+    "calorie_basis": "100 g",
+    "calories": 143.0,
+    "protein_g": 27.0,
+    "carbs_g": 0.0,
+    "fats_g": 3.0,
+    "allergen_tags": [],
+    "diet_tags": [
+      "non-vegetarian"
+    ]
+  },
+  {
+    "name": "Fish (Rohu/Katla, Raw)",
+    "aliases": [
+      "Rohu",
+      "Katla"
+    ],
+    "category": "Protein",
+    "calorie_basis": "100 g",
+    "calories": 97.0,
+    "protein_g": 17.0,
+    "carbs_g": 0.0,
+    "fats_g": 1.4,
+    "allergen_tags": [
+      "seafood",
+      "fish"
+    ],
+    "diet_tags": [
+      "non-vegetarian"
+    ]
+  },
+  {
+    "name": "Salmon",
+    "aliases": [],
+    "category": "Protein",
+    "calorie_basis": "100 g",
+    "calories": 208.0,
+    "protein_g": 20.0,
+    "carbs_g": 0.0,
+    "fats_g": 13.0,
+    "allergen_tags": [
+      "seafood",
+      "fish"
+    ],
+    "diet_tags": [
+      "non-vegetarian"
+    ]
+  },
+  {
+    "name": "Prawns/Shrimp",
+    "aliases": [
+      "Prawns",
+      "Shrimp"
+    ],
+    "category": "Protein",
+    "calorie_basis": "serving",
+    "calories": 99.0,
+    "protein_g": 24.0,
+    "carbs_g": 0.2,
+    "fats_g": 0.3,
+    "allergen_tags": [
+      "seafood",
+      "shellfish"
+    ],
+    "diet_tags": [
+      "non-vegetarian"
+    ]
+  },
+  {
+    "name": "Almonds",
+    "aliases": [],
+    "category": "Nut",
+    "calorie_basis": "serving",
+    "calories": 579.0,
+    "protein_g": 21.0,
+    "carbs_g": 22.0,
+    "fats_g": 49.0,
+    "allergen_tags": [
+      "nut",
+      "tree nut"
+    ],
+    "diet_tags": [
+      "vegan",
+      "vegetarian"
+    ]
+  },
+  {
+    "name": "Walnuts",
+    "aliases": [],
+    "category": "Nut",
+    "calorie_basis": "100 g",
+    "calories": 654.0,
+    "protein_g": 15.0,
+    "carbs_g": 14.0,
+    "fats_g": 65.0,
+    "allergen_tags": [
+      "nut",
+      "tree nut"
+    ],
+    "diet_tags": [
+      "vegan",
+      "vegetarian"
+    ]
+  },
+  {
+    "name": "Peanuts",
+    "aliases": [],
+    "category": "Nut",
+    "calorie_basis": "serving",
+    "calories": 567.0,
+    "protein_g": 26.0,
+    "carbs_g": 16.0,
+    "fats_g": 49.0,
+    "allergen_tags": [
+      "nut",
+      "peanut"
+    ],
+    "diet_tags": [
+      "vegan",
+      "vegetarian"
+    ]
+  },
+  {
+    "name": "Cashews",
+    "aliases": [],
+    "category": "Nut",
+    "calorie_basis": "serving",
+    "calories": 553.0,
+    "protein_g": 18.0,
+    "carbs_g": 30.0,
+    "fats_g": 44.0,
+    "allergen_tags": [
+      "nut",
+      "tree nut"
+    ],
+    "diet_tags": [
+      "vegan",
+      "vegetarian"
+    ]
+  },
+  {
+    "name": "Chia Seeds",
+    "aliases": [],
+    "category": "Seed",
+    "calorie_basis": "100 g",
+    "calories": 486.0,
+    "protein_g": 17.0,
+    "carbs_g": 42.0,
+    "fats_g": 31.0,
+    "allergen_tags": [],
+    "diet_tags": [
+      "vegan",
+      "vegetarian"
+    ]
+  },
+  {
+    "name": "Flax Seeds",
+    "aliases": [],
+    "category": "Seed",
+    "calorie_basis": "100 g",
+    "calories": 534.0,
+    "protein_g": 18.0,
+    "carbs_g": 29.0,
+    "fats_g": 42.0,
+    "allergen_tags": [],
+    "diet_tags": [
+      "vegan",
+      "vegetarian"
+    ]
+  },
+  {
+    "name": "Pumpkin Seeds",
+    "aliases": [],
+    "category": "Seed",
+    "calorie_basis": "serving",
+    "calories": 559.0,
+    "protein_g": 30.0,
+    "carbs_g": 10.0,
+    "fats_g": 49.0,
+    "allergen_tags": [],
+    "diet_tags": [
+      "vegan",
+      "vegetarian"
+    ]
+  },
+  {
+    "name": "Ghee",
+    "aliases": [],
+    "category": "Fat",
+    "calorie_basis": "serving",
+    "calories": 900.0,
+    "protein_g": 0.0,
+    "carbs_g": 0.0,
+    "fats_g": 100.0,
+    "allergen_tags": [
+      "dairy",
+      "milk"
+    ],
+    "diet_tags": [
+      "vegetarian"
+    ]
+  },
+  {
+    "name": "Butter",
+    "aliases": [],
+    "category": "Fat",
+    "calorie_basis": "serving",
+    "calories": 717.0,
+    "protein_g": 0.8,
+    "carbs_g": 0.1,
+    "fats_g": 81.0,
+    "allergen_tags": [
+      "dairy",
+      "milk"
+    ],
+    "diet_tags": [
+      "vegetarian"
+    ]
+  },
+  {
+    "name": "Olive Oil",
+    "aliases": [],
+    "category": "Fat",
+    "calorie_basis": "serving",
+    "calories": 884.0,
+    "protein_g": 0.0,
+    "carbs_g": 0.0,
+    "fats_g": 100.0,
+    "allergen_tags": [],
+    "diet_tags": [
+      "vegan",
+      "vegetarian"
+    ]
+  },
+  {
+    "name": "Coconut Oil",
+    "aliases": [],
+    "category": "Fat",
+    "calorie_basis": "serving",
+    "calories": 862.0,
+    "protein_g": 0.0,
+    "carbs_g": 0.0,
+    "fats_g": 100.0,
+    "allergen_tags": [],
+    "diet_tags": [
+      "vegan",
+      "vegetarian"
+    ]
+  },
+  {
+    "name": "Mustard Oil",
+    "aliases": [],
+    "category": "Fat",
+    "calorie_basis": "100 g",
+    "calories": 884.0,
+    "protein_g": 0.0,
+    "carbs_g": 0.0,
+    "fats_g": 100.0,
+    "allergen_tags": [],
+    "diet_tags": [
+      "vegan",
+      "vegetarian"
+    ]
+  }
+]

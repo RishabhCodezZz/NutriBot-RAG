@@ -1,0 +1,55 @@
+import config
+import rag
+
+
+def test_retrieve_returns_retrieved_docs_within_top_k():
+    docs = rag.retrieve("high protein lunch", top_k=5)
+    assert 0 < len(docs) <= 5
+    for d in docs:
+        assert isinstance(d, rag.RetrievedDoc)
+        assert d.doc_id.startswith("food_")
+        assert isinstance(d.text, str) and d.text
+        assert "title" in d.metadata
+
+
+def test_rerank_sorts_descending_and_respects_k():
+    docs = rag.retrieve("high protein lunch", top_k=10)
+    reranked = rag.rerank("high protein lunch", docs, k=6)
+    assert len(reranked) == 6
+    scores = [d.rerank_score for d in reranked]
+    assert scores == sorted(scores, reverse=True)
+
+
+def test_rerank_empty_docs_returns_empty():
+    assert rag.rerank("anything", [], k=6) == []
+
+
+def test_answer_query_uses_fallback_when_below_threshold(monkeypatch):
+    monkeypatch.setattr(config, "RERANK_SCORE_THRESHOLD", 999.0)  # nothing can pass this
+
+    def _boom(prompt):
+        raise AssertionError("generate() must not be called when below the rerank threshold")
+
+    monkeypatch.setattr(rag, "generate", _boom)
+    result = rag.answer_query("suggest a high protein lunch")
+    assert result.used_fallback is True
+    assert result.answer == rag.FALLBACK_ANSWER
+
+
+def test_answer_query_calls_generate_when_above_threshold(monkeypatch):
+    monkeypatch.setattr(config, "RERANK_SCORE_THRESHOLD", -999.0)  # everything passes
+    monkeypatch.setattr(rag, "generate", lambda prompt: "mocked answer")
+    result = rag.answer_query("suggest a high protein lunch")
+    assert result.used_fallback is False
+    assert result.answer == "mocked answer"
+
+
+def test_build_prompt_contains_query_delimiters_and_context():
+    doc = rag.RetrievedDoc(doc_id="food_35", text="Oats are a food item...", metadata={"title": "Oats"})
+    prompt = rag.build_prompt("suggest breakfast", [doc], "")
+    assert "<<<USER_QUERY_START>>>" in prompt
+    assert "<<<USER_QUERY_END>>>" in prompt
+    assert "suggest breakfast" in prompt
+    assert "Oats are a food item" in prompt
+    assert "hallucinate" in prompt.lower()
+    assert "halllucinate" not in prompt.lower()  # regression: original prompt had a 3-l typo
