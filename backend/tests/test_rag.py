@@ -82,3 +82,16 @@ def test_build_prompt_contains_query_delimiters_and_context():
     assert "Oats are a food item" in prompt
     assert "hallucinate" in prompt.lower()
     assert "halllucinate" not in prompt.lower()  # regression: original prompt had a 3-l typo
+
+
+def test_build_prompt_instructs_skipping_greeting_on_followup_turns():
+    """Regression test: a live user hit this - the model said "Hello! I am
+    NutriBot..." on every single turn of a conversation, not just the
+    first. The prompt now instructs the model to only greet when
+    CONVERSATION HISTORY is empty; this just confirms the instruction is
+    actually in the prompt (the live model behavior was separately
+    verified manually, not re-checked here with a real API call every
+    test run)."""
+    doc = rag.RetrievedDoc(doc_id="food_35", text="Oats are a food item...", metadata={"title": "Oats"})
+    prompt = rag.build_prompt("suggest lunch", [doc], "User: hi\nAI: Hello! I am NutriBot...")
+    assert "only greet" in prompt.lower() or "skip the greeting" in prompt.lower()
