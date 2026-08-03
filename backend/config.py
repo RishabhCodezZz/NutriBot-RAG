@@ -31,17 +31,27 @@ JUDGE_MODEL = os.environ.get("GEMINI_JUDGE_MODEL", "gemini-2.5-pro")
 TOP_K = int(os.environ.get("RAG_TOP_K", "10"))
 RERANK_K = int(os.environ.get("RAG_RERANK_K", "6"))
 # Cross-encoder raw logit threshold below which the top doc is treated as
-# "not relevant enough" to answer from. Calibrated against real queries on
-# this embedding+reranker combo, not assumed - ms-marco-MiniLM-L-6-v2's
-# scores run much more negative than a "near 0" intuition would suggest:
-#   genuinely on-topic queries observed:  -2.9 to -6.9
-#   off-topic / injection queries observed: -8.6 to -11.2
-# -9.0 sits below every observed relevant score (comfortable margin) and
-# above the clearly off-topic cluster, erring toward letting the prompt's
-# own scope-decline rule handle borderline cases rather than the retrieval
-# gate silently swallowing a real question. Re-validate if the embedding
-# or reranker model changes - the raw score range is model-specific.
-RERANK_SCORE_THRESHOLD = float(os.environ.get("RAG_RERANK_SCORE_THRESHOLD", "-9.0"))
+# "not relevant enough" to answer from.
+#
+# This was tried twice as a real relevance gate and failed both times:
+#   - first pass assumed on-topic scores run "near 0" (wrong) and set -3.0,
+#     which rejected nearly every real query in production.
+#   - second pass calibrated -9.0 against a small sample of short, structured
+#     queries ("I am 21, 75kg, suggest X"). A live user then typed a normal
+#     conversational question ("I want a light dinner, I'm tired, what do I
+#     eat") that scored -10.67 - phrasing verbosity moves the score far more
+#     than topic does. Off-topic queries cluster at -11.0 to -11.3, but some
+#     genuinely on-topic conversational phrasing scores just as low, leaving
+#     no reliable margin for a static cutoff on this reranker.
+#
+# The LLM itself, given the prompt's own scope-decline rule, correctly
+# declines off-topic questions even when irrelevant context is injected -
+# verified directly (a "what's the weather" query with 6 unrelated foods in
+# context still got "I can only help with diet, nutrition, and food
+# questions"). That's the real relevance gate now. This threshold is kept
+# only as a defensive floor for a broken/empty collection, not as a
+# semantic filter - hence the very permissive default.
+RERANK_SCORE_THRESHOLD = float(os.environ.get("RAG_RERANK_SCORE_THRESHOLD", "-50.0"))
 
 HISTORY_MAX_TURNS = int(os.environ.get("RAG_HISTORY_MAX_TURNS", "6"))
 SESSION_TTL_SECONDS = int(os.environ.get("RAG_SESSION_TTL_SECONDS", str(60 * 60 * 6)))

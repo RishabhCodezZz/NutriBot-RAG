@@ -25,16 +25,25 @@ def test_rerank_empty_docs_returns_empty():
 
 
 def test_default_threshold_does_not_reject_genuinely_relevant_queries():
-    """Regression test: RERANK_SCORE_THRESHOLD was originally set to -3.0 on
-    an untested assumption that on-topic scores run near 0. In production
-    this rejected nearly every real query - genuinely relevant matches from
-    this embedding+reranker pair score -2.9 to -6.9, well below -3.0. Uses
-    the real retrieve/rerank pipeline (no Gemini call), not a mock, because
-    the whole point is to catch a bad default, not confirm mocked plumbing."""
+    """Regression test, twice over. RERANK_SCORE_THRESHOLD was first set to
+    -3.0 assuming on-topic scores run near 0 (wrong - rejected nearly every
+    real query). Recalibrated to -9.0 against short, structured queries -
+    still wrong, because a live user's ordinary conversational phrasing
+    ("I want a light dinner, I'm tired, what do I eat") scored -10.67 on
+    the exact same reranker. Verbosity moves the score more than topic does,
+    and off-topic queries cluster at -11.0 to -11.3 with no safe margin
+    below that for a static cutoff - see config.py's RERANK_SCORE_THRESHOLD
+    comment. The threshold is now a defensive floor, not a relevance filter;
+    this test just confirms it stays out of the way of real queries,
+    conversational phrasing included. Uses the real retrieve/rerank
+    pipeline (no Gemini call), not a mock - the whole point is to catch a
+    bad default, not confirm mocked plumbing."""
     for query in [
         "I am 21, 75kg. Suggest a high protein lunch.",
         "I need a healthy breakfast for energy, but I am allergic to nuts.",
         "Suggest a safe, low-sugar evening snack for a diabetic.",
+        "I want to have a light dinner for today as i am tired what do i eat",
+        "not sure what to cook for breakfast tomorrow morning, any ideas",
     ]:
         docs = rag.rerank(query, rag.retrieve(query))
         assert docs[0].rerank_score >= config.RERANK_SCORE_THRESHOLD, (
