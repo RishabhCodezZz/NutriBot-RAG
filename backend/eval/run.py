@@ -123,7 +123,7 @@ def main():
     parser.add_argument("--sleep", type=float, default=2.0)
     parser.add_argument("--cases", default=None)
     parser.add_argument("--run-dir", default=None, help="Resume into an existing run directory instead of creating a new one.")
-    parser.add_argument("--rpm", type=int, default=15, help="Shared throttle interval for generation+judge calls (default 15, matching the Gemini judge's free-tier RPM limit - generation now runs on a separately-limited Ollama Cloud budget, see eval/ratelimit.py).")
+    parser.add_argument("--rpm", type=int, default=15, help="Shared RPM budget used to compute the minimum spacing between eval API calls (default 15, matching the Gemini judge's free-tier RPM limit; generation uses a separate Ollama Cloud budget, see eval/ratelimit.py).")
     args = parser.parse_args()
 
     ratelimit.configure(args.rpm)
