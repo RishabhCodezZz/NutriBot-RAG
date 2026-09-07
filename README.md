@@ -2,9 +2,13 @@
 
 A retrieval-augmented chatbot that suggests personalized diet plans from a curated nutrition dataset. It retrieves relevant food descriptions from ChromaDB, reranks them, and asks an LLM to generate context-aware, portioned recommendations with explanations.
 
+![NutriBot demo: personalized meal plan, allergy-safe recommendations with hover citations, and a multilingual reply in Hindi](docs/demo.gif)
+
 ## Features
 
 - **Personalized answers**: Prompt enforces age/weight/goal awareness, portions, and “why” reasoning.
+- **Allergy & medical safety**: Refuses to recommend a food that conflicts with a stated allergy or condition, even if it's in the retrieved context - verified by the eval suite's safety metrics, not just prompted and hoped for.
+- **Multilingual**: Auto-detects the language you type in and replies in the same language - no manual language picker.
 - **RAG stack**: ChromaDB with `all-mpnet-base-v2` embeddings; cross-encoder reranker `ms-marco-MiniLM-L-6-v2`.
 - **LLM**: `gpt-oss:120b` via [Ollama Cloud](https://ollama.com/cloud) (free tier) for generation. The eval suite's LLM-judge uses Gemini `gemini-3.1-flash-lite` separately, deliberately on a different provider than generation to avoid self-grading bias.
 - **Frontend UX**: Dark/light mode, speech synthesis read-aloud, a shimmer skeleton loading state, “New Chat” that fully resets history.
