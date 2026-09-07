@@ -21,7 +21,7 @@ def test_search_success_envelope(monkeypatch):
     assert resp.status_code == 200
     assert data["success"] is True
     assert data["answer"] == "Eat Oats (1 cup) for breakfast."
-    assert data["sources"] == [{"title": "Oats"}]
+    assert data["sources"] == [{"title": "Oats", "text": "..."}]
 
 
 def test_search_fallback_still_reports_success_true(monkeypatch):

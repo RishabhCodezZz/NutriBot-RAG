@@ -1,8 +1,8 @@
 """LLM-as-judge metrics: claim-level faithfulness, relevance, and an
 instruction-following rubric mapped to the prompt's own mandates.
 
-Judges with config.JUDGE_MODEL (gemini-2.5-pro by default) while generation
-uses config.GEN_MODEL (gemini-2.5-flash) - using the same model for both
+Judges with config.JUDGE_MODEL (Gemini) while generation uses config.GEN_MODEL
+(Ollama Cloud, a different provider entirely) - using the same model for both
 was the original evaluate.py's self-grading bias. Parse failures are
 recorded as None ("ERROR"), never silently substituted with a fabricated
 0 or mid-scale default - that was the original script's other bias.

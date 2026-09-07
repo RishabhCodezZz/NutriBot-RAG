@@ -4,7 +4,7 @@ from flask_cors import CORS
 import config
 import rag
 
-print("Connecting to Gemini & Database...")
+print("Connecting to Ollama Cloud & Database...")
 print(f"System ready using {config.GEN_MODEL}.")
 
 CHAT_HISTORY = {"default_user": []}
@@ -44,7 +44,7 @@ def search():
     try:
         result = rag.answer_query(query, history_text=history_text)
     except Exception as e:
-        print(f"Gemini generation failed: {e}")
+        print(f"Generation failed: {e}")
         return jsonify({"success": False, "error": f"Generation failed: {e}"}), 502
 
     if not result.used_fallback:
@@ -52,7 +52,11 @@ def search():
         history.append(f"AI: {result.answer}")
         history[:] = history[-(config.HISTORY_MAX_TURNS * 4) :]
 
-    sources = [{"title": d.metadata.get("title", "Food")} for d in result.context_docs]
+    # `text` is included so the frontend can show the real retrieved snippet
+    # behind a food name on click - a citation the reader can verify against
+    # the actual source document, not just a claim the model asserts about
+    # itself.
+    sources = [{"title": d.metadata.get("title", "Food"), "text": d.text} for d in result.context_docs]
     return jsonify({"success": True, "answer": result.answer, "sources": sources})
 
 

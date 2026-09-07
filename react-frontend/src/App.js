@@ -1,16 +1,10 @@
 import React, { useState } from 'react';
 import './App.css';
 import ChatInterface from './components/ChatInterface';
-import Sidebar from './components/Sidebar';
 
 function App() {
-  const [sidebarOpen, setSidebarOpen] = useState(true);
   const [isDarkMode, setIsDarkMode] = useState(true);
   const [resetCounter, setResetCounter] = useState(0);
-
-  const toggleSidebar = () => {
-    setSidebarOpen(!sidebarOpen);
-  };
 
   const toggleDarkMode = () => {
     setIsDarkMode(!isDarkMode);
@@ -33,10 +27,14 @@ function App() {
   };
 
   return (
-    <div className={`flex h-screen ${isDarkMode ? 'bg-[#18191A]' : 'bg-gray-50'}`}>
-      <Sidebar isOpen={sidebarOpen} onToggle={toggleSidebar} isDarkMode={isDarkMode} onNewChat={handleNewChat} />
+    <div className={`flex h-screen ${isDarkMode ? 'dark bg-[#0A0A0B]' : 'bg-[#FAFAF9]'}`}>
       <div className="flex-1 flex flex-col">
-        <ChatInterface isDarkMode={isDarkMode} onToggleDarkMode={toggleDarkMode} resetCounter={resetCounter} />
+        <ChatInterface
+          isDarkMode={isDarkMode}
+          onToggleDarkMode={toggleDarkMode}
+          onNewChat={handleNewChat}
+          resetCounter={resetCounter}
+        />
       </div>
     </div>
   );

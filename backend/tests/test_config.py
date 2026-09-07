@@ -18,3 +18,14 @@ def test_require_gemini_key_returns_value_when_set(monkeypatch):
 
 def test_chroma_path_is_absolute_not_cwd_relative():
     assert pathlib.Path(config.CHROMA_PATH).is_absolute()
+
+
+def test_require_ollama_key_raises_when_missing(monkeypatch):
+    monkeypatch.setattr(config, "OLLAMA_API_KEY", None)
+    with pytest.raises(RuntimeError):
+        config.require_ollama_key()
+
+
+def test_require_ollama_key_returns_value_when_set(monkeypatch):
+    monkeypatch.setattr(config, "OLLAMA_API_KEY", "abc123")
+    assert config.require_ollama_key() == "abc123"
