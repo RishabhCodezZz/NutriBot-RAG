@@ -1,7 +1,7 @@
 """Server-side mirror of react-frontend/src/utils/translator.js's Google gtx
 call, so the eval harness can exercise the multilingual test cases the same
 way the real frontend does: translate the user's query to English before it
-ever reaches rag.py, since that's what production actually sends to Gemini.
+ever reaches rag.py, since that's what production actually sends to the model.
 """
 import requests
 

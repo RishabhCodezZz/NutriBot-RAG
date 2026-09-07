@@ -36,7 +36,7 @@ def test_default_threshold_does_not_reject_genuinely_relevant_queries():
     comment. The threshold is now a defensive floor, not a relevance filter;
     this test just confirms it stays out of the way of real queries,
     conversational phrasing included. Uses the real retrieve/rerank
-    pipeline (no Gemini call), not a mock - the whole point is to catch a
+    pipeline (no LLM call), not a mock - the whole point is to catch a
     bad default, not confirm mocked plumbing."""
     for query in [
         "I am 21, 75kg. Suggest a high protein lunch.",
@@ -82,6 +82,74 @@ def test_build_prompt_contains_query_delimiters_and_context():
     assert "Oats are a food item" in prompt
     assert "hallucinate" in prompt.lower()
     assert "halllucinate" not in prompt.lower()  # regression: original prompt had a 3-l typo
+
+
+def test_generate_returns_content_on_success(monkeypatch):
+    monkeypatch.setattr(
+        rag, "_ollama_client",
+        type("FakeClient", (), {"chat": staticmethod(lambda **kw: {"message": {"content": "Eat Oats (1 cup)."}})})(),
+    )
+    assert rag.generate("prompt") == "Eat Oats (1 cup)."
+
+
+def test_generate_wraps_client_errors():
+    """Edge case: an auth failure, rate limit, or network timeout from Ollama
+    Cloud must surface as a clear, wrapped RuntimeError - not a raw client
+    exception type that callers (server.py's generic except Exception) have
+    to guess the meaning of."""
+    class _BoomClient:
+        def chat(self, **kw):
+            raise ConnectionError("simulated network failure")
+
+    original = rag._ollama_client
+    rag._ollama_client = _BoomClient()
+    try:
+        try:
+            rag.generate("prompt")
+            assert False, "expected RuntimeError"
+        except RuntimeError as e:
+            assert "Ollama Cloud generation call failed" in str(e)
+    finally:
+        rag._ollama_client = original
+
+
+def test_generate_raises_on_malformed_response():
+    """Edge case: a response missing the expected message/content shape
+    (e.g. an API-level error payload instead of a chat message) must not
+    surface as a raw KeyError."""
+    class _MalformedClient:
+        def chat(self, **kw):
+            return {"error": "model is warming up"}
+
+    original = rag._ollama_client
+    rag._ollama_client = _MalformedClient()
+    try:
+        try:
+            rag.generate("prompt")
+            assert False, "expected RuntimeError"
+        except RuntimeError as e:
+            assert "unexpected response shape" in str(e)
+    finally:
+        rag._ollama_client = original
+
+
+def test_generate_raises_on_empty_content():
+    """Edge case: the call succeeds but the model returns empty content -
+    must not silently return an empty string as if it were a real answer."""
+    class _EmptyClient:
+        def chat(self, **kw):
+            return {"message": {"content": ""}}
+
+    original = rag._ollama_client
+    rag._ollama_client = _EmptyClient()
+    try:
+        try:
+            rag.generate("prompt")
+            assert False, "expected RuntimeError"
+        except RuntimeError as e:
+            assert "empty response" in str(e)
+    finally:
+        rag._ollama_client = original
 
 
 def test_build_prompt_instructs_skipping_greeting_on_followup_turns():
