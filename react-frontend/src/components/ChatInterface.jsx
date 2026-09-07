@@ -42,6 +42,7 @@ const CitationTooltip = ({ title, text, t, isDarkMode, children }) => {
             </button>
             {pos && createPortal(
                 <div
+                    role="tooltip"
                     style={{ position: 'fixed', top: pos.top, left: pos.left, transform: 'translateY(-100%) translateY(-6px)' }}
                     className={`pointer-events-none z-50 w-56 max-w-[75vw] rounded-xl border p-3 text-left text-xs shadow-lg ${t.panelBorder} ${isDarkMode ? 'bg-[#16161A] text-[#F2F2F3]' : 'bg-white text-[#18181B]'}`}
                 >
@@ -84,11 +85,16 @@ const AssistantAnswer = ({ content, sources, t, isDarkMode }) => {
         // the shorter "Chicken Thigh" base alias when the full phrase is
         // actually present, rather than the base alias grabbing part of it.
         const pattern = [...patterns].sort((a, b) => b.length - a.length).map(escapeRegExp).join('|');
-        // Lookaround instead of \b: several titles end in a closing paren
-        // (e.g. "Chicken Thigh (cooked)"), and \b right after ")" would
-        // never match since ")" to a following space/period is a
-        // non-word-to-non-word transition, not a boundary.
-        return { regex: new RegExp(`(?<![A-Za-z0-9])(${pattern})(?![A-Za-z0-9])`, 'gi'), sourceByTitleLower: map };
+        // Every title starts with a letter, so plain \b is a correct left
+        // boundary on its own - no lookaround needed there. The right side
+        // is the only one that needs special handling: several titles end
+        // in a closing paren (e.g. "Chicken Thigh (cooked)"), and \b right
+        // after ")" would never match, since ")" to a following space/period
+        // is a non-word-to-non-word transition, not a boundary. A lookahead
+        // fixes that - and lookahead, unlike lookbehind, has been supported
+        // everywhere since ES3, so this needs no browser-compatibility
+        // fallback the way a symmetric lookbehind+lookahead version would.
+        return { regex: new RegExp(`\\b(${pattern})(?![A-Za-z0-9])`, 'gi'), sourceByTitleLower: map };
     }, [sources]);
 
     // Only processes direct string children - nested elements (e.g. a
@@ -124,9 +130,9 @@ const AssistantAnswer = ({ content, sources, t, isDarkMode }) => {
         // exist on v9+. Each override below explicitly destructures and drops
         // them before spreading the rest onto the real DOM element, or React
         // logs "does not recognize the `X` prop on a DOM element" for each one.
-        h1: ({ node, level, ...props }) => <h3 className="text-base font-bold mt-4 mb-2 first:mt-0" {...props} />,
-        h2: ({ node, level, ...props }) => <h3 className="text-base font-bold mt-4 mb-2 first:mt-0" {...props} />,
-        h3: ({ node, level, ...props }) => <h4 className={`text-sm font-bold mt-3 mb-1.5 first:mt-0 ${t.textDim}`} {...props} />,
+        h1: ({ node, level, children, ...props }) => <h3 className="text-base font-bold mt-4 mb-2 first:mt-0" {...props}>{children}</h3>,
+        h2: ({ node, level, children, ...props }) => <h3 className="text-base font-bold mt-4 mb-2 first:mt-0" {...props}>{children}</h3>,
+        h3: ({ node, level, children, ...props }) => <h4 className={`text-sm font-bold mt-3 mb-1.5 first:mt-0 ${t.textDim}`} {...props}>{children}</h4>,
         // list-outside (not list-inside): gpt-oss often puts block content
         // (its own paragraph) inside a single list item, and list-inside's
         // marker ends up stranded on its own line above that block instead
@@ -150,7 +156,7 @@ const AssistantAnswer = ({ content, sources, t, isDarkMode }) => {
             <th className={`text-left font-mono uppercase tracking-wider text-[10px] px-3 py-2 border-b ${t.panelBorder} ${t.textDim}`} {...props} />
         ),
         td: ({ node, children, isHeader, ...props }) => <td className={`px-3 py-2 border-b ${t.panelBorder} align-top`} {...props}>{cite(children, 'td')}</td>,
-        a: ({ node, ...props }) => <a className="underline text-emerald-500 hover:text-emerald-400" target="_blank" rel="noreferrer" {...props} />,
+        a: ({ node, children, ...props }) => <a className="underline text-emerald-500 hover:text-emerald-400" target="_blank" rel="noreferrer" {...props}>{children}</a>,
     };
 
     return (

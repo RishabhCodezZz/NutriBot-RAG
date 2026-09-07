@@ -6,7 +6,7 @@ A retrieval-augmented chatbot that suggests personalized diet plans from a curat
 
 - **Personalized answers**: Prompt enforces age/weight/goal awareness, portions, and “why” reasoning.
 - **RAG stack**: ChromaDB with `all-mpnet-base-v2` embeddings; cross-encoder reranker `ms-marco-MiniLM-L-6-v2`.
-- **LLM**: `gpt-oss:120b` via [Ollama Cloud](https://ollama.com/cloud) (free tier) for generation. The eval suite's LLM-judge uses Gemini `gemini-2.5-pro` separately, deliberately on a different provider than generation to avoid self-grading bias.
+- **LLM**: `gpt-oss:120b` via [Ollama Cloud](https://ollama.com/cloud) (free tier) for generation. The eval suite's LLM-judge uses Gemini `gemini-3.1-flash-lite` separately, deliberately on a different provider than generation to avoid self-grading bias.
 - **Frontend UX**: Dark/light mode, speech synthesis read-aloud, a shimmer skeleton loading state, “New Chat” that fully resets history.
 - **Sources**: Hovering a cited food name in an answer shows the real retrieved snippet behind it.
 
