@@ -38,3 +38,7 @@ Lora headline + one-line promise; four starter prompts (muscle-building lunch, a
 - Manual/automated viewport check at 375 / 768 / 1440 in both themes.
 - Contrast script over token pairs.
 - One real end-to-end answer through the backend started with `venv\Scripts\python.exe` to confirm tables/citations render in the new style.
+
+## Deviations
+- `backend/config.py` default CORS origins now also include `http://127.0.0.1:3000` (opening the app via 127.0.0.1 was blocked and showed "Could not reach the server").
+- Token names became `--canvas` / `--line` / `--ink` etc. instead of `--bg` / `--border` / `--text` (the plan adopted them to avoid classes like `bg-bg`).
