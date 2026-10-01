@@ -71,6 +71,54 @@ test('non-English input is translated for the backend and the answer is translat
   expect(JSON.parse(global.fetch.mock.calls[0][1].body).query).toBe('light dinner');
 });
 
+test('a backend success:false response shows the database alert', async () => {
+  global.fetch = jest.fn().mockResolvedValue({ json: async () => ({ success: false }) });
+  renderChat();
+  fireEvent.change(screen.getByLabelText(/ask nutribot/i), { target: { value: 'hello' } });
+  fireEvent.click(screen.getByRole('button', { name: 'Send message' }));
+  expect(await screen.findByRole('alert')).toHaveTextContent(/trouble connecting to the database/i);
+});
+
+test('if input translation fails the raw text is sent to the backend', async () => {
+  const warnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {});
+  try {
+    translate.mockRejectedValue(new Error('translate down'));
+    renderChat();
+    fireEvent.change(screen.getByLabelText(/ask nutribot/i), { target: { value: 'raw typed text' } });
+    fireEvent.click(screen.getByRole('button', { name: 'Send message' }));
+    await screen.findByRole('button', { name: 'Oats' });
+    expect(global.fetch).toHaveBeenCalledTimes(1);
+    expect(JSON.parse(global.fetch.mock.calls[0][1].body).query).toBe('raw typed text');
+  } finally {
+    warnSpy.mockRestore();
+  }
+});
+
+test('if output translation fails the English answer is still shown', async () => {
+  const warnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {});
+  try {
+    global.fetch = jest.fn().mockResolvedValue({
+      json: async () => ({
+        success: true,
+        answer: 'Try Oats with milk.',
+        sources: [{ title: 'Oats', text: 'Oats are high in fiber.' }],
+      }),
+    });
+    translate.mockImplementation(async (text, { to }) => {
+      if (to !== 'en') throw new Error('output translate down');
+      return { text: 'light dinner', from: { language: { iso: 'hi' } } };
+    });
+    renderChat();
+    fireEvent.change(screen.getByLabelText(/ask nutribot/i), { target: { value: 'हल्का खाना' } });
+    fireEvent.click(screen.getByRole('button', { name: 'Send message' }));
+    expect(await screen.findByText(/Try/)).toHaveTextContent('Try');
+    expect(screen.getByRole('button', { name: 'Oats' })).toBeInTheDocument();
+    expect(screen.queryByRole('alert')).not.toBeInTheDocument();
+  } finally {
+    warnSpy.mockRestore();
+  }
+});
+
 test('bumping resetCounter clears the conversation and restores the welcome screen', async () => {
   const { rerender } = renderChat({ resetCounter: 0 });
   fireEvent.click(screen.getByRole('button', { name: /build muscle/i }));

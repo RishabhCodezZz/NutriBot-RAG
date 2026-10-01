@@ -34,6 +34,18 @@ test('speakingId clears when the utterance ends', () => {
   expect(result.current.speakingId).toBe(null);
 });
 
+test('a stale utterance error does not clear the newer one', () => {
+  const speakSpy = jest.spyOn(window.speechSynthesis, 'speak');
+  const { result } = renderHook(() => useSpeech());
+  act(() => result.current.speak('first', 'en', 1));
+  act(() => result.current.speak('second', 'en', 2));
+  expect(result.current.speakingId).toBe(2);
+  act(() => speakSpy.mock.calls[0][0].onerror());
+  expect(result.current.speakingId).toBe(2);
+  act(() => speakSpy.mock.calls[1][0].onend());
+  expect(result.current.speakingId).toBe(null);
+});
+
 test('stop clears speakingId', () => {
   const { result } = renderHook(() => useSpeech());
   act(() => result.current.speak('hello', 'en', 9));

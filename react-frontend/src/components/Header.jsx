@@ -23,8 +23,9 @@ const Header = ({ isDark, onToggleTheme, onNewChat, isLoading }) => (
                 <button
                     type="button"
                     onClick={onNewChat}
+                    disabled={isLoading}
                     aria-label="New chat"
-                    className="flex h-11 items-center gap-1.5 rounded-full border border-line px-3.5 text-sm text-muted transition-colors hover:border-primary hover:text-primary"
+                    className="flex h-11 items-center gap-1.5 rounded-full border border-line px-3.5 text-sm text-muted transition-colors enabled:hover:border-primary enabled:hover:text-primary disabled:cursor-not-allowed disabled:opacity-50"
                 >
                     <Plus className="h-4 w-4" aria-hidden="true" />
                     <span className="hidden sm:inline">New chat</span>

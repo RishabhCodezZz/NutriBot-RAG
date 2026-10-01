@@ -33,8 +33,9 @@ export default function useSpeech() {
 
     utterance.rate = 1.0;
     utterance.pitch = 1.0;
-    utterance.onend = () => setSpeakingId(null);
-    utterance.onerror = () => setSpeakingId(null);
+    const clearIfCurrent = () => setSpeakingId((cur) => (cur === id ? null : cur));
+    utterance.onend = clearIfCurrent;
+    utterance.onerror = clearIfCurrent;
 
     setSpeakingId(id);
     window.speechSynthesis.speak(utterance);

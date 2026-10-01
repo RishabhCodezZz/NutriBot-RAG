@@ -14,6 +14,19 @@ test('shows the brand and a New chat button that works', () => {
   expect(onNewChat).toHaveBeenCalledTimes(1);
 });
 
+test('New chat is disabled while a request is in flight', () => {
+  const { onNewChat } = setup({ isLoading: true });
+  const button = screen.getByRole('button', { name: 'New chat' });
+  expect(button).toBeDisabled();
+  fireEvent.click(button);
+  expect(onNewChat).not.toHaveBeenCalled();
+});
+
+test('New chat is enabled when idle', () => {
+  setup({ isLoading: false });
+  expect(screen.getByRole('button', { name: 'New chat' })).toBeEnabled();
+});
+
 test('theme button label reflects the current theme and toggles', () => {
   const { onToggleTheme } = setup({ isDark: true });
   fireEvent.click(screen.getByRole('button', { name: 'Switch to light mode' }));
