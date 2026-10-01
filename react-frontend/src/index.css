@@ -1,62 +1,103 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Base styles */
-html {
-  height: 100%;
+/* Design tokens: space-separated RGB triplets so Tailwind can add alpha. */
+:root {
+  --canvas: 250 250 247;
+  --surface: 255 255 255;
+  --surface-2: 243 246 243;
+  --line: 218 226 220;
+  --ink: 24 33 29;
+  --muted: 85 99 92;
+  --primary: 4 120 87;
+  --primary-fg: 255 255 255;
+  --primary-soft: 228 244 236;
+  --accent: 194 65 12;
+  --danger: 185 28 28;
+  --danger-soft: 254 242 242;
+  color-scheme: light;
 }
 
-body {
-  height: 100%;
-  margin: 0;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+.dark {
+  --canvas: 14 18 16;
+  --surface: 20 26 23;
+  --surface-2: 27 35 31;
+  --line: 42 54 48;
+  --ink: 238 243 240;
+  --muted: 148 163 155;
+  --primary: 52 211 153;
+  --primary-fg: 4 24 17;
+  --primary-soft: 17 43 33;
+  --accent: 251 146 60;
+  --danger: 252 165 165;
+  --danger-soft: 69 20 20;
+  color-scheme: dark;
 }
 
-#root {
-  height: 100%;
-}
-
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
-}
-
-/* Dark mode scrollbar */
-.dark ::-webkit-scrollbar-thumb {
-  background: #475569;
-}
-
-.dark ::-webkit-scrollbar-thumb:hover {
-  background: #64748b;
-}
-
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
   }
-  
+
   body {
-    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    margin: 0;
+    background-color: rgb(var(--canvas));
+    color: rgb(var(--ink));
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Visible keyboard focus everywhere (never remove the outline). */
+  :focus-visible {
+    outline: 2px solid rgb(var(--primary));
+    outline-offset: 2px;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgb(var(--line));
+    border-radius: 4px;
+  }
+}
+
+/* Shimmer skeleton (thinking indicator) */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton-line {
+  height: 0.75rem;
+  border-radius: 9999px;
+  background-image: linear-gradient(
+    90deg,
+    rgb(var(--surface-2)) 25%,
+    rgb(var(--line)) 50%,
+    rgb(var(--surface-2)) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

@@ -1,14 +1,10 @@
 import React, { useState } from 'react';
-import './App.css';
 import ChatInterface from './components/ChatInterface';
+import useTheme from './hooks/useTheme';
 
 function App() {
-  const [isDarkMode, setIsDarkMode] = useState(true);
+  const { isDark, toggle } = useTheme();
   const [resetCounter, setResetCounter] = useState(0);
-
-  const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode);
-  };
 
   const handleNewChat = async () => {
     // Clears backend chat history and triggers a frontend reset
@@ -27,15 +23,13 @@ function App() {
   };
 
   return (
-    <div className={`flex h-screen ${isDarkMode ? 'dark bg-[#0A0A0B]' : 'bg-[#FAFAF9]'}`}>
-      <div className="flex-1 flex flex-col">
-        <ChatInterface
-          isDarkMode={isDarkMode}
-          onToggleDarkMode={toggleDarkMode}
-          onNewChat={handleNewChat}
-          resetCounter={resetCounter}
-        />
-      </div>
+    <div className="h-screen h-dvh bg-canvas text-ink">
+      <ChatInterface
+        isDark={isDark}
+        onToggleTheme={toggle}
+        onNewChat={handleNewChat}
+        resetCounter={resetCounter}
+      />
     </div>
   );
 }

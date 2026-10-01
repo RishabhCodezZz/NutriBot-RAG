@@ -11,27 +11,46 @@ A retrieval-augmented chatbot that suggests personalized diet plans from a curat
 - **Multilingual**: Auto-detects the language you type in and replies in the same language - no manual language picker.
 - **RAG stack**: ChromaDB with `all-mpnet-base-v2` embeddings; cross-encoder reranker `ms-marco-MiniLM-L-6-v2`.
 - **LLM**: `gpt-oss:120b` via [Ollama Cloud](https://ollama.com/cloud) (free tier) for generation. The eval suite's LLM-judge uses Gemini `gemini-3.1-flash-lite` separately, deliberately on a different provider than generation to avoid self-grading bias.
-- **Frontend UX**: Dark/light mode, speech synthesis read-aloud, a shimmer skeleton loading state, “New Chat” that fully resets history.
+- **Frontend UX**: A welcome screen with starter prompts, a light/dark theme that follows your system setting and is remembered, keyboard and screen-reader support, hover citations, speech synthesis read-aloud, a shimmer skeleton loading state, and “New Chat” that fully resets history.
 - **Sources**: Hovering a cited food name in an answer shows the real retrieved snippet behind it.
 
 ## Project Structure
 
 ```
-Mini project/
+NutriBot-RAG/
 ├── backend/
-│   ├── ingest.py          # Ingest nutrition_data.txt into ChromaDB
-│   ├── server.py          # Flask API (RAG + Ollama Cloud)
-│   ├── requirements.txt   # Backend dependencies
+│   ├── ingest.py            # Ingest nutrition_data.txt into ChromaDB
+│   ├── server.py            # Flask API (thin wrapper over rag.py)
+│   ├── rag.py               # Retrieve / rerank / prompt / generate pipeline
+│   ├── config.py            # Settings, API keys, CORS origins
+│   ├── requirements*.txt    # Backend dependencies
 │   ├── data/
 │   │   └── nutrition_data.txt
-│   └── chroma_db/         # Generated vector store (created after ingest)
+│   ├── eval/                # Evaluation suite
+│   ├── tests/               # Backend tests
+│   └── chroma_db/           # Generated vector store (created after ingest)
 └── react-frontend/
     ├── package.json
-    ├── src/
-    │   ├── App.js
-    │   └── components/
-    │       └── ChatInterface.jsx
-    └── public/
+    ├── tailwind.config.js
+    ├── scripts/
+    │   └── check-contrast.js    # WCAG AA check for the design tokens
+    └── src/
+        ├── App.js
+        ├── index.css
+        ├── components/
+        │   ├── ChatInterface.jsx
+        │   ├── Header.jsx
+        │   ├── Composer.jsx
+        │   ├── WelcomeScreen.jsx
+        │   ├── MessageList.jsx
+        │   ├── Message.jsx
+        │   ├── AssistantAnswer.jsx
+        │   └── CitationTooltip.jsx
+        ├── hooks/
+        │   ├── useTheme.js
+        │   └── useSpeech.js
+        └── utils/
+            └── translator.js
 ```
 
 ## Backend Setup
@@ -64,13 +83,16 @@ npm install
 npm start  # opens http://localhost:3000
 ```
 
+`npm run check:contrast` verifies the design tokens meet WCAG AA. The backend allows the origins
+`http://localhost:3000` and `http://127.0.0.1:3000` by default (override with `ALLOWED_ORIGINS` in `backend/.env`).
+
 ## Usage
 
 1) Start backend (`python server.py`).  
 2) Start frontend (`npm start`).  
 3) Ask for meal guidance (e.g., “I am 21, 75kg. Suggest a high-protein lunch”).  
 4) Click **New Chat** to fully reset conversation (frontend and backend history).  
-5) Use the speaker button on answers to hear text-to-speech.
+5) Use the **Read aloud** button on answers to hear text-to-speech.
 
 ## Regenerating the DB
 
